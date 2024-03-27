@@ -1,0 +1,45 @@
+<% content_for :dynamic_content do %>
+  <section class="text-blueGray-700">
+    <div class="bg-blueGray-50 flex flex-col gap-8 bg-[#b5c2d1]">
+      <div class="text-black">
+        <div class="flex flex-wrap justify-between">
+          <div class="text-lg shadow-md bg-white text-[#264C79] lg:px-10 md:w-80 h-28 pb-2 flex flex-col items-center justify-center rounded w-fit">
+            <%= @bookings.count %> Bookings
+          </div>
+        </div>
+      </div>
+
+      <div class="employees-list w-[100%] bg-white rounded-lg overflow-hidden">
+        <h1 class="text-2xl text-center font-semibold mb-4 pt-4">List of your bookings</h1>
+        <div class="overflow-x-auto">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead class="border-b bg-white font-medium justify-between">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">N</th>
+                    <th scope="col" class="px-6 py-4">Event Name</th>
+                    <th scope="col" class="px-6 py-4">Event location</th>
+                    <th scope="col" class="px-6 py-4">Booking ticket</th>
+                    <th scope="col" class="px-6 py-4">Created at</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @bookings.each.with_index(1) do |bk, index| %>
+                    <tr class="<%= cycle('bg-white ', 'bg-neutral-100 justify-between') %>">
+                      <td class="whitespace-nowrap px-6 py-4"><%= index %></td>
+                      <td class="whitespace-nowrap px-6 py-4"><%= bk&.event&.name %></td>
+                      <td class="whitespace-nowrap px-6 py-4"><%= bk&.event&.location %></td>
+                      <td class="whitespace-nowrap px-6 py-4"><%= bk&.ticket_number %></td>
+                      <td class="whitespace-nowrap px-6 py-4"><%= bk.created_at.strftime('%d %b %Y') %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
