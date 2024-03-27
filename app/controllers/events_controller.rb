@@ -8,6 +8,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def current_user_events
+    @events = Rails.cache.fetch('current_user_events', expires_in: 1.hour) do
+      current_user.events.order(created_at: :desc)
+    end
+  end
+
   def show; end
 
   def new
