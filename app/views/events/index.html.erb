@@ -14,7 +14,7 @@
       <% elsif event.date_and_time < Time.now %>
         <p class="text-red-500 mb-2">Event is in the past</p>
       <% else %>
-        <%= button_to "Book Event", new_event_path(event_id: event.id), method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
+        <%= button_to "Book Event", new_event_booking_path(event_id: event.id), method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
       <% end %>
     </div>
   <% end %>

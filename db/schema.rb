@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_181230) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
-    t.integer "tickets_count", default: 1, null: false
+    t.integer "ticket_quantity", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ticket_number"

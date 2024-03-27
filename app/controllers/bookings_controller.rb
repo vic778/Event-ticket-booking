@@ -8,16 +8,19 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
+    @event = Event.find(params[:event_id])
+    @booking = @event.bookings.new
   end
 
   def create
+    @event = Event.find(params[:event_id])
     @booking = current_user.bookings.create(bookings_params)
+    @booking.event = @event
     @booking.ticket_number = @booking.generate_reference
-    
+
     if @booking.save
       update_remaining_ticket(@booking, @booking.event)
-      redirect_to bookings_path, notice: 'Booking was successfully created.'
+      redirect_to my_bookings_path, notice: 'Booking was successfully created.'
     else
       render :new
     end

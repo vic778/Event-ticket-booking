@@ -1,4 +1,4 @@
-<% content_for :dynamic_content do %>
+
   <section class="text-blueGray-700">
     <div class="bg-blueGray-50 flex flex-col gap-8 bg-[#b5c2d1]">
       <div class="text-black">
@@ -20,8 +20,9 @@
                     <th scope="col" class="px-6 py-4">N</th>
                     <th scope="col" class="px-6 py-4">Event Name</th>
                     <th scope="col" class="px-6 py-4">Event location</th>
+                    <th scope="col" class="px-6 py-4">Event Date & Time</th>
                     <th scope="col" class="px-6 py-4">Booking ticket</th>
-                    <th scope="col" class="px-6 py-4">Created at</th>
+                    <th scope="col" class="px-6 py-4">Booked at</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,7 @@
                       <td class="whitespace-nowrap px-6 py-4"><%= index %></td>
                       <td class="whitespace-nowrap px-6 py-4"><%= bk&.event&.name %></td>
                       <td class="whitespace-nowrap px-6 py-4"><%= bk&.event&.location %></td>
+                      <td class="whitespace-nowrap px-6 py-4"><%= bk&.event&.date_and_time.strftime("%B %d, %Y %I:%M %p") %></td>
                       <td class="whitespace-nowrap px-6 py-4"><%= bk&.ticket_number %></td>
                       <td class="whitespace-nowrap px-6 py-4"><%= bk.created_at.strftime('%d %b %Y') %></td>
                     </tr>
@@ -42,4 +44,3 @@
       </div>
     </div>
   </section>
-<% end %>
