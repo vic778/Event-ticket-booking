@@ -12,15 +12,9 @@
       <% if event.total_tickets.zero? %>
         <p class="text-red-500 mb-2">No tickets available anymore for this event.</p>
       <% elsif event.date_and_time < Time.now %>
-        <p class="text-red-500 mb-2">This event is no longer available.</p>
+        <p class="text-red-500 mb-2">Event is in the past</p>
       <% else %>
         <%= button_to "Book Event", new_event_path(event_id: event.id), method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
-      <% end %>
-      
-      <% if event.total_tickets.zero? %>
-        <span class="text-red-500">No tickets available</span>
-      <% elsif event.date_and_time < Time.now %>
-        <span class="text-red-500">Event is in the past</span>
       <% end %>
     </div>
   <% end %>
