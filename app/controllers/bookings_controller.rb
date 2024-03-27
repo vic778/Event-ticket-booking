@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_event, only: :create
 
   def index
     @bookings = Rails.cache.fetch("bookings", expires_in: 5.minutes) do
@@ -13,13 +14,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @event = Event.find(params[:event_id])
-    @booking = current_user.bookings.create(bookings_params)
-    @booking.event = @event
-    @booking.ticket_number = @booking.generate_reference
+    return redirect_to new_event_booking_path(@event), alert: 'Event is not available for booking' unless @event.available_for_booking?
+    return redirect_to new_event_booking_path(@event), alert: "Only #{@event.remaining_ticket} tickets are available for Event" if @event.remaining_ticket < bookings_params[:ticket_quantity].to_i
 
-    if @booking.save
-      update_remaining_ticket(@booking, @booking.event)
+    @booking = BookingService.new(current_user, @event, bookings_params).call
+    if @booking.present?
       redirect_to my_bookings_path, notice: 'Booking was successfully created.'
     else
       render :new
@@ -28,12 +27,11 @@ class BookingsController < ApplicationController
 
   protected
 
-  def bookings_params
-    params.require(:booking).permit(:event_id, :ticket_quantity)
+  def find_event
+    @event = Event.find(params[:event_id])
   end
 
-  def update_remaining_ticket(booking, event)
-    event.remaining_ticket -= booking.ticket_quantity
-    event.save
+  def bookings_params
+    params.require(:booking).permit(:event_id, :ticket_quantity)
   end
 end
