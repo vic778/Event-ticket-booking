@@ -29,6 +29,19 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
+# Additional gems
+gem "aws-sdk-s3"
+gem 'cloudinary'
+gem 'devise'
+gem 'figaro'
+gem 'friendly_id'
+gem 'kaminari'
+gem 'omniauth-google-oauth2'
+gem 'phonelib'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'twilio-ruby', '~> 6.7'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
