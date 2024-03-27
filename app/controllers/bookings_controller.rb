@@ -14,6 +14,9 @@ class BookingsController < ApplicationController
   end
 
   def create
+    return redirect_to new_event_booking_path(@event), alert: 'Event is not available for booking' unless @event.available_for_booking?
+    return redirect_to new_event_booking_path(@event), alert: "Only #{@event.remaining_ticket} tickets are available for Event" if @event.remaining_ticket < bookings_params[:ticket_quantity].to_i
+
     @booking = BookingService.new(current_user, @event, bookings_params).call
     if @booking.present?
       redirect_to my_bookings_path, notice: 'Booking was successfully created.'
