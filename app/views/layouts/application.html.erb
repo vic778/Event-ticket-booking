@@ -11,9 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+   <body class="">
+      <%= turbo_frame_tag "modal"%>
+      <p class="notice text-green-300" style="display: block;"><%= notice %></p>
+      <p class="alert" style="display: block;"><%= alert %></p>
+        <main>
+          <%= render partial: 'shared/header' %>
+          <%= yield %>
+        </main>
+    </body>
 </html>
