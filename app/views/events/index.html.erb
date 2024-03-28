@@ -1,3 +1,4 @@
+<!-- app/views/events/index.html.erb -->
 <div class="container mx-auto mt-4">
   <h1 class="font-bold text-4xl mb-4">Events</h1>
   
@@ -14,7 +15,10 @@
       <% elsif event.date_and_time < Time.now %>
         <p class="text-red-500 mb-2">Event is in the past</p>
       <% else %>
-        <%= button_to "Book Event", new_event_booking_path(event_id: event.slug), method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
+        <button data-controller="booking-form" data-action="click->booking-form#showForm" class="bg-blue-500 text-white px-4 py-2 rounded-md">Book Event</button>
+        <div data-target="booking-form.form" class="hidden">
+          <%#= render "bookings/form", event: event, url: new_event_booking_path(event_id: event.slug) %>
+        </div>
       <% end %>
     </div>
   <% end %>
