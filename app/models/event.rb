@@ -1,5 +1,7 @@
 class Event < ApplicationRecord
+  extend FriendlyId
   lock_optimistically
+  friendly_id :name, use: :slugged
 
   belongs_to :user
   has_many :bookings, dependent: :destroy
