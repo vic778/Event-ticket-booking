@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @event = Event.find(params[:event_id])
+    @event = Event.friendly.find(params[:event_id])
     @booking = @event.bookings.new
   end
 
@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
   protected
 
   def find_event
-    @event = Event.find(params[:event_id])
+    @event = Event.friendly.find(params[:event_id])
   end
 
   def bookings_params
