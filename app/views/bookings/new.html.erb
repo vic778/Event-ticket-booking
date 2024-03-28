@@ -1,1 +1,5 @@
-<%= render partial: "bookings/form" %>
+<%= turbo_frame_tag "modal" do %>
+  <div class="mt-4 p-4 bg-white shadow-md rounded-md">
+    <%= render partial: "bookings/form" %>
+  </div>
+<% end %>

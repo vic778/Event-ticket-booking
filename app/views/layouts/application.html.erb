@@ -12,11 +12,11 @@
   </head>
 
    <body class="">
-      <%= turbo_frame_tag "modal"%>
       <p class="notice text-green-300" style="display: block;"><%= notice %></p>
       <p class="alert" style="display: block;"><%= alert %></p>
         <main>
           <%= render partial: 'shared/header' %>
+          <%= turbo_frame_tag "modal"%>
           <%= yield %>
         </main>
     </body>
