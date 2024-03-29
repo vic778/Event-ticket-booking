@@ -15,6 +15,7 @@
 - Event Creation: Users can create events with details such as name, description, location, date and time, and total number of tickets available.
 - Ticket Booking: Users can book tickets for events, with concurrency handling to prevent overbooking.
 - Viewing Events: Users can view the list of events, including events they have created and tickets they have booked.
+- Display the name of the event while booking instead of the ID for security reasons.
 
 ### Concurrency Handling
 The application uses optimistic locking to handle situations where multiple users are trying to book tickets for the same event at the same time, ensuring data consistency and preventing overbooking.
@@ -32,6 +33,7 @@ Caching mechanisms are implemented using Rails' built-in caching to improve the 
 - Devise
 - Rails built-in caching
 - Sidekiq
+- Frienldy ID
 - taiTailwind
 - rubocop
 - CD/CI

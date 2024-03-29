@@ -1,5 +1,10 @@
 
   <section class="text-blueGray-700">
+    <% if @notification.present? %>
+      <div class="alert notice">
+        <%= @notification %>
+      </div>
+    <% end %>
     <div class="bg-blueGray-50 flex flex-col gap-8 bg-[#b5c2d1]">
       <div class="text-black">
         <div class="flex flex-wrap justify-between">

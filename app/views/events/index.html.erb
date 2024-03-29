@@ -1,4 +1,6 @@
-<div class="container mx-auto mt-4">
+<div class="container mx-auto mt-4" data-controller="booking-form">
+  <%= render "bookings/form"%>
+<div id="notification"></div>
   <h1 class="font-bold text-4xl mb-4">Events</h1>
   
   <% @events.each do |event| %>
@@ -14,8 +16,10 @@
       <% elsif event.date_and_time < Time.now %>
         <p class="text-red-500 mb-2">Event is in the past</p>
       <% else %>
-        <%= button_to "Book Event", new_event_booking_path(event_id: event.id), method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
+        <%= link_to "Book Event", new_event_booking_path(event_id: event.id), data: {action: "booking-form#showForm"},"data-event" => event.id, method: :get, class: "bg-blue-500 text-white px-4 py-2 rounded-md" %>
       <% end %>
     </div>
   <% end %>
+
 </div>
+
