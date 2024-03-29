@@ -19,7 +19,11 @@ class BookingsController < ApplicationController
 
     @booking = BookingService.new(current_user, @event, bookings_params).call
     if @booking.present?
-      redirect_to my_bookings_path, notice: 'Booking was successfully created.'
+      render json: { message: 'Booking created successfully' }, status: :ok
+      # @message = 'Booking created successfully'
+      # respond_to do |format|
+      #        format.turbo_stream
+      #    end
     else
       render :new
     end

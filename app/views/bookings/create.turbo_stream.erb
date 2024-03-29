@@ -1,0 +1,4 @@
+<%=turbo_stream.update "notification" do%>
+  <%= @message%>
+  <%= link_to "Back to events", my_bookings_path, data: {controller: "booking-form"}, turbo_cache: false, class: "hidden"  %>
+<%end%>
